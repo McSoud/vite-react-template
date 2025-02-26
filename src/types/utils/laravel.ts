@@ -12,7 +12,8 @@ export type TLaravelError<T extends Array<string> | unknown = unknown> = {
 
 export type TLaravelResponse<S = unknown, E = unknown> =
   | TLaravelSuccess<S>
-  | TLaravelError<E>;
+  | TLaravelError<E>
+  | undefined;
 
 export type TLaravelObject = {
   id: number;

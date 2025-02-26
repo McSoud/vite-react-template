@@ -13,30 +13,31 @@ export class AxiosMiddleware {
       },
       (error) => {
         return Promise.reject(error);
-      }
+      },
     );
     axios.interceptors.response.use(
       (response) => {
         return response;
       },
       (error) => {
-        switch (error?.response?.status) {
-          case 401:
-            console.error("Unauthorized.");
-            throw error;
-          case 403:
-            console.error("Forbidden.");
-            throw error;
-          case 404:
-            console.error("Not found.");
-            throw error;
-          case 422:
-            console.error("Unprocessable Content.");
-            throw error;
-          default:
-            return error;
-        }
-      }
+        // switch (error?.response?.status) {
+        //   case 401:
+        //     console.error("Unauthorized.");
+        //     throw error;
+        //   case 403:
+        //     console.error("Forbidden.");
+        //     throw error;
+        //   case 404:
+        //     console.error("Not found.");
+        //     throw error;
+        //   case 422:
+        //     console.error("Unprocessable Content.");
+        //     throw error;
+        //   default:
+        //     throw error;
+        // }
+        throw error;
+      },
     );
   }
 }

@@ -1,3 +1,3 @@
-import { FC, SVGProps } from "react";
+import { SVGProps } from "react";
 
-export type TSvgComponent = FC<SVGProps<SVGSVGElement>>;
+export type TSvgComponentProps = SVGProps<SVGSVGElement>;

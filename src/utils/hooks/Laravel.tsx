@@ -36,13 +36,13 @@ export function useLaravelQuery<T, E = unknown>({
       try {
         const res = await axios.get<TLaravelResponse<T, E>>(
           endPoint,
-          axiosParams
+          axiosParams,
         );
         if (toastSuccess)
           toast.success(
             typeof toastSuccess === "string"
               ? toastSuccess
-              : toastSuccess(res.data as TLaravelSuccess<T>)
+              : toastSuccess(res.data as TLaravelSuccess<T>),
           );
         return res.data;
       } catch (err) {
@@ -51,7 +51,7 @@ export function useLaravelQuery<T, E = unknown>({
             ? typeof toastError === "string"
               ? toastError
               : toastError(err as AxiosError<TLaravelError<E>>)
-            : "Something went wrong"
+            : "Something went wrong",
         );
         return null;
       }

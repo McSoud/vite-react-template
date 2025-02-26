@@ -20,5 +20,5 @@ createRoot(document.getElementById("root")!).render(
       <App />
       <Toaster richColors />
     </QueryClientProvider>
-  </StrictMode>
+  </StrictMode>,
 );

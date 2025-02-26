@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --text-section-heading: clamp(2rem, 2vw, 3rem);
+  --text-heading-section: clamp(1.5rem, 2vw, 2.25rem);
 
+  --spacing-container-padding: 1rem;
   --spacing-section-padding: 3rem;
   --spacing-section-margin: 5rem;
 }
 
 @layer base {
+  @media screen and (min-width: 48rem) {
+    :root {
+      --spacing-container-padding: 2rem;
+    }
+  }
   :root {
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -15,10 +21,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
   html {
-    @apply scroll-pt-4;
+    @apply scroll-smooth;
   }
   body {
-    @apply relative overflow-x-hidden text-base;
+    @apply relative overflow-x-hidden;
   }
   body:has(dialog[open]) {
     @apply overflow-y-hidden;
@@ -63,7 +69,7 @@
 
 @layer components {
   .container {
-    @apply mx-auto px-4 md:px-8;
+    @apply px-container-padding mx-auto md:px-8;
   }
   .section-padding__block,
   .section-padding__bottom {
@@ -80,7 +86,7 @@
   @media screen and (prefers-reduced-motion: no-preference) {
     .hover-pop:hover:not(:disabled),
     .hover-pop:focus:not(:disabled) {
-      transform: translate(2px, -2px);
+      transform: translate(0.125rem, -0.125rem);
     }
   }
 }
@@ -91,24 +97,6 @@
 }
 @utility single-grid__item {
   grid-area: a;
-}
-@utility section-padding__block {
-  padding-block: var(--spacing-section-padding);
-}
-@utility section-padding__top {
-  padding-top: var(--spacing-section-padding);
-}
-@utility section-padding__bottom {
-  padding-bottom: var(--spacing-section-padding);
-}
-@utility section-margin__block {
-  margin-block: var(--spacing-section-margin);
-}
-@utility section-margin__top {
-  margin-top: var(--spacing-section-margin);
-}
-@utility section-margin__bottom {
-  margin-bottom: var(--spacing-section-margin);
 }
 @utility hover-pop {
   display: inline-block;
