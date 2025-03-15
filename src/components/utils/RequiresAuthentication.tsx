@@ -4,6 +4,6 @@ export default function RequiresAuthentication() {
   return localStorage.getItem("token") ? (
     <Outlet />
   ) : (
-    <Navigate to="/401" replace />
+    <Navigate to="/login" replace />
   );
 }

@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import RequiresAuthentication from "./utils/RequiresAuthentication";
+import RequiresAuthentication from "./components/utils/RequiresAuthentication";
 import PageNotFound from "./pages/NotFound";
 import Header from "./components/template/Header";
 import Footer from "./components/template/Footer";

@@ -65,16 +65,23 @@ export function useLaravelQuery<T, E = unknown>({
   }: {
     success: (data: T) => ReactNode;
     loading?: ReactNode;
-    error?: ReactNode;
+    error?: ReactNode | ((err: TLaravelError<E>) => ReactNode);
   }) => {
-    const { data, isLoading, isSuccess } = query;
-    // if (!data && typeof isLoading === "undefined") return null;
-    if (typeof isLoading !== "undefined" && isLoading) {
-      return loading ? loading : <p>Loading...</p>;
-    }
+    const { data, isPending, isSuccess, isError } = query;
+    if (isPending) return loading ?? <p>Loading...</p>;
+    if (isError)
+      return error ? (
+        typeof error === "function" ? (
+          error(data as TLaravelError)
+        ) : (
+          error
+        )
+      ) : (
+        <p>Something went wrong</p>
+      );
     if (isSuccess && (data as TLaravelResponse<T>)?.success)
       return success((data as TLaravelSuccess<T>).data);
-    return error ? error : params?.enabled ? <p>Something went wrong</p> : null;
+    return null;
   };
   return { Display, ...query };
 }
