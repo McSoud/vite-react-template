@@ -1,11 +1,46 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Structure
 
-Currently, two official plugins are available:
+The project is structured as follows:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+src
+├── App.css
+├── App.tsx
+├── main.tsx
+├── components
+│   ├── common
+│   │   ├── interactive
+│   │   │   ├── Button.tsx
+│   │   │   └── Link.tsx
+│   │   └── other components
+│   ├── template
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── Main.tsx
+│   │   └── Modal.tsx
+│   └── utils
+│       ├── Laravel.tsx
+│       └── RequiresAuthentication.tsx
+├── pages
+│   ├── NotFound.tsx
+│   └── home
+│       ├── _hooks.tsx
+│       ├── _index.tsx
+│       └── ...OtherComponents.tsx
+├── types
+│   ├── ...otherTypes.ts
+│   └── utils
+│       ├── components.tsx
+│       └── laravel.ts
+├── utils
+│   ├── functions.ts
+│   ├── middleware.ts
+│   └── hooks
+│       └── title.ts
+└── vite.config.ts
+```
 
 ## Expanding the ESLint configuration
 
@@ -15,11 +50,11 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -28,7 +63,7 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```

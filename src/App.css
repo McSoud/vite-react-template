@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --color-example-primary: #618a38;
+
   --text-heading-section: clamp(1.5rem, 2vw, 2.25rem);
 
   --spacing-container-padding: 1rem;
@@ -21,13 +23,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
   html {
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
   }
   body {
-    @apply relative overflow-x-hidden;
+    position: relative;
+    overflow-x: hidden;
   }
   body:has(dialog[open]) {
-    @apply overflow-y-hidden;
+    overflow-y: hidden;
   }
   #root {
     display: flex;
@@ -49,39 +52,39 @@
   }
   ::-webkit-scrollbar {
     -webkit-appearance: auto;
-    height: 5px !important;
-    width: 5px;
+    background-color: #3334;
+    height: 0.4rem;
+    width: 0.4rem;
   }
   ::-webkit-scrollbar-thumb:horizontal {
-    border-radius: 20px;
-    background-color: #618a38;
+    border-radius: 1.25rem;
+    background-color: var(--color-example-primary);
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   }
   ::-webkit-scrollbar-thumb:vertical {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: #618a38;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   }
   ::backdrop {
-    @apply bg-black/50;
+    background-color: #0008;
   }
 }
 
 @layer components {
   .container {
-    @apply px-container-padding mx-auto md:px-8;
+    padding-inline: var(--spacing-container-padding);
+    margin-inline: auto;
+    @media (min-width: 48rem) {
+      padding-inline: 2rem;
+    }
   }
-  .section-padding__block,
-  .section-padding__bottom {
-    @apply pb-section-padding;
-  }
-  .section-margin__block,
-  .section-margin__top {
-    @apply mt-section-margin;
-  }
-  .section-margin__block,
-  .section-margin__bottom {
-    @apply mb-section-margin;
+  .hover-pop {
+    display: inline-block;
+    transition:
+      transform 0.2s,
+      color 0.2s,
+      background-color 0.2s;
   }
   @media screen and (prefers-reduced-motion: no-preference) {
     .hover-pop:hover:not(:disabled),
@@ -97,11 +100,4 @@
 }
 @utility single-grid__item {
   grid-area: a;
-}
-@utility hover-pop {
-  display: inline-block;
-  transition:
-    transform 0.2s,
-    color 0.2s,
-    background-color 0.2s;
 }

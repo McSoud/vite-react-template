@@ -24,7 +24,7 @@ function App() {
           }
         >
           {/* Unauthenticated */}
-          <Route path="/" element={<Main id="home">Home</Main>} />
+          <Route path="/" element={<Main id="home" className="h-2000">Home</Main>} />
         </Route>
         {/* Requires Authentication */}
         <Route element={<RequiresAuthentication />}></Route>
