@@ -4,7 +4,7 @@ import RequiresAuthentication from "./components/utils/RequiresAuthentication";
 import PageNotFound from "./pages/NotFound";
 import Header from "./components/template/Header";
 import Footer from "./components/template/Footer";
-import Main from "./components/template/Main";
+import PageHome from "./pages/home/_index";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           }
         >
           {/* Unauthenticated */}
-          <Route path="/" element={<Main id="home" className="h-2000">Home</Main>} />
+          <Route path="/" element={<PageHome />} />
         </Route>
         {/* Requires Authentication */}
         <Route element={<RequiresAuthentication />}></Route>

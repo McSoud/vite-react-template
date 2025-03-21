@@ -1,12 +1,13 @@
+import Main from "@/components/template/Main";
 import { Link } from "react-router-dom";
 
 export default function PageNotFound() {
   return (
-    <main
+    <Main
       id="page-not-found"
-      className="min-h-screen min-w-screen content-center text-white"
+      className="min-h-screen min-w-screen content-center bg-black text-white"
     >
-      <section className="container text-center" id="not-found-section">
+      <section id="not-found-section" className="container text-center">
         <h1 className="mb-4 text-6xl">404</h1>
         <h2 className="mb-4 text-4xl">This page is not available.</h2>
         <p>
@@ -17,6 +18,6 @@ export default function PageNotFound() {
           &nbsp;to be redirected to the homepage.
         </p>
       </section>
-    </main>
+    </Main>
   );
 }
