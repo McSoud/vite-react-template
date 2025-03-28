@@ -3,17 +3,15 @@ import {
   DetailedHTMLProps,
   HTMLAttributes,
   LabelHTMLAttributes,
-  useEffect,
-  useRef,
 } from "react";
 import { twMerge } from "tailwind-merge";
 import Select from "react-select";
 
 type TProps = ComponentProps<typeof Select> & {
-  title?: string;
   hidden?: boolean;
 } & {
-  label?: LabelHTMLAttributes<HTMLLabelElement>["children"] | true;
+  name: string;
+  label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
   labelClass?: DetailedHTMLProps<
     LabelHTMLAttributes<HTMLLabelElement>,
     HTMLLabelElement
@@ -31,18 +29,12 @@ const style: ComponentProps<typeof Select>["styles"] = {
     opacity: state.isDisabled ? 1 : 1,
     border: 0,
   }),
-  control: (base, state) => ({
+  control: (base) => ({
     ...base,
     borderRadius: "var(--radius-md)",
-    borderColor: state.menuIsOpen
-      ? "var(--color-example-primary)"
-      : "var(--color-gray-400)",
     boxShadow: "none",
     minHeight: "auto",
     backgroundColor: "transparent",
-    ":hover": {
-      borderColor: "var(--color-example-primary)",
-    },
   }),
   input: (base) => ({
     ...base,
@@ -68,59 +60,49 @@ const style: ComponentProps<typeof Select>["styles"] = {
   }),
 };
 
-const CustomSelect = ({
+function CustomSelect({
   label,
   labelClass,
   error,
   containerClass,
   ...props
-}: TProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const input = ref.current?.querySelector("input");
-    const valueInput = ref.current?.querySelector(`input[name=${props.name}]`);
-    if (input && props.title) input.setAttribute("title", props?.title);
-    if (valueInput) {
-      valueInput.setAttribute("autoComplete", "off");
-      if (props.defaultValue)
-        valueInput.setAttribute("value", props.defaultValue as string);
-    }
-    // eslint-disable-next-line
-  }, [props?.placeholder]);
+}: TProps) {
   return (
-    <div ref={ref} className={containerClass}>
+    <div className={twMerge("select-field", containerClass)}>
       <label
         htmlFor={
-          props.inputId
-            ? props.inputId
-            : props.name
-              ? `react-select-${props.name}-input`
-              : undefined
+          props.inputId ??
+          (props.name ? `select-${props.name}-input` : undefined)
         }
-        className={twMerge(
-          "text-example-primary mb-0.5 block font-bold",
-          labelClass,
-        )}
+        className={labelClass}
       >
-        {label === true ? props.title : label}
-        {props.required && label && (
-          <span className="text-red-600">&nbsp;*</span>
-        )}
+        {label}
+        {props.required && label && <span className="required">&nbsp;*</span>}
       </label>
       <Select
-        inputId={props.name ? `react-select-${props.name}-input` : undefined}
+        inputId={props.name ? `select-${props.name}-input` : undefined}
         instanceId={`${props?.name}`}
         isClearable
         {...props}
-        styles={{ ...style, ...props.styles }}
+        styles={{
+          ...style,
+          control: (base) => ({
+            ...base,
+            borderColor: error
+              ? "var(--color-red-600)"
+              : "var(--color-gray-400)",
+            ":hover": {
+              borderColor: error
+                ? "var(--color-red-600)"
+                : "var(--color-gray-400)",
+            },
+          }),
+          ...props.styles,
+        }}
       />
-      {error && (
-        <span className="mt-1.5 ml-5 text-sm text-red-600 first-letter:uppercase">
-          {error}
-        </span>
-      )}
+      {error && <span className="error-message text-sm">{error}</span>}
     </div>
   );
-};
+}
 
 export default CustomSelect;

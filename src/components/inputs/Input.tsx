@@ -3,6 +3,7 @@ import {
   DetailedHTMLProps,
   ForwardedRef,
   HTMLAttributes,
+  HTMLInputTypeAttribute,
   InputHTMLAttributes,
   LabelHTMLAttributes,
   forwardRef,
@@ -13,6 +14,9 @@ type TProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
+  name: string;
+  title: string;
+  type: Omit<HTMLInputTypeAttribute, "checkbox" | "hidden" | "radio">;
   label?: LabelHTMLAttributes<HTMLLabelElement>["children"] | true;
   labelClass?: LabelHTMLAttributes<HTMLLabelElement>["className"];
   containerClass?: DetailedHTMLProps<
@@ -26,31 +30,20 @@ type TProps = DetailedHTMLProps<
 const CustomInput = forwardRef<HTMLInputElement, TProps>(
   ({ label = false, labelClass, containerClass, error, ...props }, ref) => {
     return (
-      <div className={twMerge("w-full", containerClass)}>
+      <div className={twMerge("input-field", containerClass)}>
         <label
           hidden={!label}
-          htmlFor={
-            props.id ? props.id : props.name ? `${props.name}-input` : undefined
-          }
-          className={twMerge(
-            "text-green-primary mb-0.5 block font-bold",
-            labelClass,
-          )}
+          htmlFor={props.id ?? (props.name ? `${props.name}-input` : undefined)}
+          className={labelClass}
         >
           {label === true ? props.title : label}
-          {props.required && label && (
-            <span className="text-red-600">&nbsp;*</span>
-          )}
+          {props.required && label && <span className="required">&nbsp;*</span>}
         </label>
         <input
           id={props.name ? `${props.name}-input` : undefined}
           {...props}
           ref={ref}
-          className={twMerge(
-            "px-input-px focus:border-example-primary hover:border-example-primary py-input-py w-full rounded-md border bg-transparent outline-none",
-            error ? "border-red-600" : "border-gray-400",
-            props.className,
-          )}
+          className={twMerge(error && "error", props.className)}
         />
         <div
           className={clsx(
@@ -58,7 +51,7 @@ const CustomInput = forwardRef<HTMLInputElement, TProps>(
             error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
           )}
         >
-          <p className="overflow-hidden text-sm text-red-500">{error}</p>
+          <p className="error-message overflow-hidden text-sm">{error}</p>
         </div>
       </div>
     );

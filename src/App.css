@@ -16,6 +16,8 @@
 @media screen and (min-width: 48rem) {
   @theme {
     --spacing-container-padding: 2rem;
+    --spacing-section-padding: 2rem;
+    --spacing-section-margin: 3rem;
   }
 }
 
@@ -32,9 +34,9 @@
   body {
     position: relative;
     overflow-x: hidden;
-  }
-  body:has(dialog[open]) {
-    overflow-y: hidden;
+    &:has(dialog[open]) {
+      overflow-y: hidden;
+    }
   }
   #root {
     display: flex;
@@ -83,13 +85,47 @@
     padding-inline: var(--spacing-container-padding);
     margin-inline: auto;
   }
+  /* Button */
   .button {
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
+    &.button__primary {
+      background-color: var(--color-example-primary);
+      color: #fff;
+    }
   }
-  .button__primary {
-    background-color: var(--color-example-primary);
-    color: #fff;
+  /* Input */
+  .input-field,
+  .select-field {
+    width: 100%;
+    & label {
+      margin-bottom: calc(var(--spacing) * 0.5);
+      font-weight: 600;
+      & .required {
+        color: var(--color-red-600);
+      }
+    }
+    & .error-message {
+      color: var(--color-red-600);
+    }
+  }
+  .input-field {
+    & input {
+      padding-block: var(--spacing-input-py);
+      padding-inline: var(--spacing-input-px);
+      width: 100%;
+      border: 1px solid var(--color-gray-400);
+      border-radius: var(--radius-md);
+      background-color: transparent;
+      transition: border-color 0.2s;
+    }
+    & input:focus,
+    & input:hover {
+      border-color: var(--color-example-primary);
+    }
+    & input.error {
+      border-color: var(--color-red-600);
+    }
   }
   .hover-pop {
     display: inline-block;
@@ -97,11 +133,11 @@
       transform 0.2s,
       color 0.2s,
       background-color 0.2s;
-  }
-  @media screen and (prefers-reduced-motion: no-preference) {
-    .hover-pop:hover:not(:disabled),
-    .hover-pop:focus:not(:disabled) {
-      transform: translate(0.125rem, -0.125rem);
+    &.hover-pop:hover:not(:disabled),
+    &.hover-pop:focus:not(:disabled) {
+      @media screen and (prefers-reduced-motion: no-preference) {
+        transform: translate(0.125rem, -0.125rem);
+      }
     }
   }
 }

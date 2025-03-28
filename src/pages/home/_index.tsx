@@ -1,54 +1,30 @@
 import CustomInput from "@/components/inputs/Input";
 import CustomSelect from "@/components/inputs/Select";
-import Main from "@/components/template/Main";
-import useLaravelQuery from "@/components/utils/Laravel";
-import { TLaravelObject } from "@/types/utils/laravel";
-import del from "@/constants/utils/queryKeys";
-import { useQueryClient } from "@tanstack/react-query";
 import ButtonPrimary from "@/components/interactive/Button";
+import Main from "@/components/template/Main";
 
 export default function PageHome() {
-  const { Display } = useLaravelQuery<
-    {
-      team: ({
-        full_name: string;
-        image: string;
-        job_title: string;
-        order: number;
-        small_description: string;
-      } & TLaravelObject)[];
-    },
-    unknown
-  >({
-    queryKey: del.team,
-    endPoint: "/team_members",
-  });
-  const queryClient = useQueryClient();
-
   return (
     <Main id="home">
       <section id="home-section" className="my-section-margin container">
-        <ButtonPrimary
-          className="hover-pop"
-          onClick={() => queryClient.invalidateQueries({ queryKey: del.team })}
-        >
-          About
-        </ButtonPrimary>
-        <CustomInput />
+        <CustomInput
+          title="Name"
+          label
+          type="text"
+          name="name"
+          autoComplete="email"
+          required
+        />
         <CustomSelect
-          isMulti
+          required
+          name="Address"
+          label="Test"
           options={[
-            {
-              label: "Option 1",
-              value: "option-1",
-            },
-            {
-              label: "Option 2",
-              value: "option-2",
-            },
+            { value: "1", label: "Option 1" },
+            { value: "2", label: "Option 2" },
           ]}
         />
-        <Display success={(data) => <h1>{data.team[0].full_name}</h1>} />
+        <ButtonPrimary className="hover-pop" type="button" title="Submit" />
       </section>
     </Main>
   );

@@ -22,7 +22,7 @@ export const ButtonPrimary = ({ isLoading, secondary, ...props }: TProps) => {
       {isLoading ? (
         <SvgLoadingSpinner className="mx-auto w-6" />
       ) : (
-        props.children
+        (props.children ?? props.title)
       )}
     </button>
   );

@@ -1,6 +1,5 @@
-import {
+import TLaravelResponse, {
   TLaravelError,
-  TLaravelResponse,
   TLaravelSuccess,
 } from "@/types/utils/laravel";
 import { useQuery } from "@tanstack/react-query";
@@ -23,7 +22,7 @@ type TLaravelQuery<T, E> = Omit<
   callback?: (res: TLaravelResponse<T, E>) => void;
 };
 
-export default function useLaravelQuery<T, E>({
+export default function useLaravelQuery<T, E = unknown>({
   queryKey,
   endPoint,
   axiosParams,
