@@ -1,3 +1,8 @@
+type TLaravelResponse<S = unknown, E = unknown> =
+  | TLaravelSuccess<S>
+  | TLaravelError<E>
+  | undefined;
+
 export type TLaravelSuccess<T = unknown> = {
   success: true;
   message: string;
@@ -7,13 +12,8 @@ export type TLaravelSuccess<T = unknown> = {
 export type TLaravelError<T extends Array<string> | unknown = unknown> = {
   success: false;
   message: string;
-  errors?: T extends Array<string> ? { [k in T[number]]: string[] } : unknown;
+  errors?: T extends Array<string> ? { [k in T[number]]: string[] } : T;
 };
-
-export type TLaravelResponse<S = unknown, E = unknown> =
-  | TLaravelSuccess<S>
-  | TLaravelError<E>
-  | undefined;
 
 export type TLaravelObject = {
   id: number;
@@ -38,3 +38,5 @@ export type TLaravelPagination<T = unknown> = {
 };
 
 export type TODO = any;
+
+export default TLaravelResponse;

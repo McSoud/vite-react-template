@@ -1,6 +1,5 @@
-import {
+import TLaravelResponse, {
   TLaravelError,
-  TLaravelResponse,
   TLaravelSuccess,
 } from "@/types/utils/laravel";
 import { useQuery } from "@tanstack/react-query";
@@ -9,28 +8,30 @@ import { ReactNode } from "react";
 import { toast } from "sonner";
 
 type TLaravelQuery<T, E> = Omit<
-  Parameters<typeof useQuery>[0],
-  "queryKey" | "queryFn"
+  Parameters<
+    typeof useQuery<TLaravelResponse<T, E>, AxiosError<TLaravelError<E>>>
+  >[0],
+  "queryFn"
 > & {
-  queryKey: Parameters<typeof useQuery>[0]["queryKey"];
   endPoint: string;
   axiosParams?: Parameters<typeof axios.get>[1];
   toastError?:
     | string
     | ((err: AxiosError<TLaravelError<E>> | undefined) => string | ReactNode);
   toastSuccess?: string | ((res: TLaravelSuccess<T>) => string | ReactNode);
+  callback?: (res: TLaravelResponse<T, E>) => void;
 };
 
-export function useLaravelQuery<T, E = unknown>({
+export default function useLaravelQuery<T, E = unknown>({
   queryKey,
   endPoint,
   axiosParams,
   toastError,
   toastSuccess,
-  ...params
+  callback,
+  ...queryParams
 }: TLaravelQuery<T, E>) {
-  const query = useQuery<unknown, unknown, TLaravelResponse<T, E>, unknown[]>({
-    //@ts-ignorecomment
+  const query = useQuery({
     queryKey,
     queryFn: async () => {
       try {
@@ -38,6 +39,7 @@ export function useLaravelQuery<T, E = unknown>({
           endPoint,
           axiosParams,
         );
+        callback && callback(res.data);
         if (toastSuccess)
           toast.success(
             typeof toastSuccess === "string"
@@ -46,42 +48,47 @@ export function useLaravelQuery<T, E = unknown>({
           );
         return res.data;
       } catch (err) {
+        console.error(err);
         toast.error(
           toastError
             ? typeof toastError === "string"
               ? toastError
               : toastError(err as AxiosError<TLaravelError<E>>)
-            : "Something went wrong",
+            : ((err as AxiosError<TLaravelError<E>>).response?.data.message ??
+                "Something went wrong"),
         );
-        return null;
+        throw err;
       }
     },
-    ...params,
+    ...queryParams,
   });
   const Display = ({
     success,
     error,
     loading,
   }: {
-    success: (data: T) => ReactNode;
+    success: ReactNode | ((data: T) => ReactNode);
     loading?: ReactNode;
     error?: ReactNode | ((err: TLaravelError<E>) => ReactNode);
   }) => {
-    const { data, isPending, isSuccess, isError } = query;
+    const { data, isPending, isSuccess, error: err } = query;
     if (isPending) return loading ?? <p>Loading...</p>;
-    if (isError)
-      return error ? (
-        typeof error === "function" ? (
-          error(data as TLaravelError)
-        ) : (
-          error
+    if (isSuccess && data?.success)
+      return typeof success === "function" ? success(data.data) : success;
+    return error ? (
+      typeof error === "function" ? (
+        error(
+          err?.response?.data ?? {
+            success: false,
+            message: "Something went wrong",
+          },
         )
       ) : (
-        <p>Something went wrong</p>
-      );
-    if (isSuccess && (data as TLaravelResponse<T>)?.success)
-      return success((data as TLaravelSuccess<T>).data);
-    return null;
+        error
+      )
+    ) : (
+      <p>Something went wrong</p>
+    );
   };
   return { Display, ...query };
 }
