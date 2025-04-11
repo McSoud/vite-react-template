@@ -11,7 +11,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Authentication */}
-        <Route path="401" element="{<Unauthorized />}" />
         <Route path="login" element="{<PageLogin />}" />
         {/* Pages Layout */}
         <Route
@@ -25,9 +24,9 @@ function App() {
         >
           {/* Unauthenticated */}
           <Route path="/" element={<PageHome />} />
+          {/* Requires Authentication */}
+          <Route element={<RequiresAuthentication />}></Route>
         </Route>
-        {/* Requires Authentication */}
-        <Route element={<RequiresAuthentication />}></Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

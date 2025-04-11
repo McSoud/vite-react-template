@@ -2,9 +2,12 @@
 
 @theme {
   /* color-mix(in oklab, var(--color-example-primary) %percentage%, transparent) */
-  --color-example-primary: #618a38;
+  --color-primary: #00552c;
+  --color-secondary: #f0f0f0;
+  --color-text: #333;
+  --color-accent: #fff;
 
-  --text-heading-section: clamp(1.5rem, 2vw, 2.25rem);
+  --text-section-heading: clamp(1.5rem, 2vw, 2.25rem);
 
   --spacing-container-padding: 1rem;
   --spacing-section-padding: 3rem;
@@ -34,6 +37,8 @@
   body {
     position: relative;
     overflow-x: hidden;
+    background-color: #ffffff;
+    color: var(--color-text);
     &:has(dialog[open]) {
       overflow-y: hidden;
     }
@@ -50,14 +55,14 @@
   ul > li {
     display: contents;
   }
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-  input[type="number"] {
-    appearance: textfield;
-    -moz-appearance: textfield;
   }
   ::-webkit-scrollbar {
     -webkit-appearance: auto;
@@ -65,14 +70,10 @@
     height: 0.4rem;
     width: 0.4rem;
   }
+  ::-webkit-scrollbar-thumb:vertical,
   ::-webkit-scrollbar-thumb:horizontal {
     border-radius: 1.25rem;
-    background-color: var(--color-example-primary);
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-  }
-  ::-webkit-scrollbar-thumb:vertical {
-    border-radius: 1.25rem;
-    background-color: #618a38;
+    background-color: var(--color-primary);
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   }
   ::backdrop {
@@ -90,7 +91,7 @@
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
     &.button__primary {
-      background-color: var(--color-example-primary);
+      background-color: var(--color-primary);
       color: #fff;
     }
   }
@@ -98,19 +99,19 @@
   .input-field,
   .select-field {
     width: 100%;
-    & label {
+    label {
       margin-bottom: calc(var(--spacing) * 0.5);
       font-weight: 600;
-      & .required {
+      .required {
         color: var(--color-red-600);
       }
     }
-    & .error-message {
+    .error-message {
       color: var(--color-red-600);
     }
   }
   .input-field {
-    & input {
+    input {
       padding-block: var(--spacing-input-py);
       padding-inline: var(--spacing-input-px);
       width: 100%;
@@ -118,13 +119,13 @@
       border-radius: var(--radius-md);
       background-color: transparent;
       transition: border-color 0.2s;
-    }
-    & input:focus,
-    & input:hover {
-      border-color: var(--color-example-primary);
-    }
-    & input.error {
-      border-color: var(--color-red-600);
+      &:focus,
+      &:hover {
+        border-color: var(--color-example-primary);
+      }
+      &.error {
+        border-color: var(--color-red-600);
+      }
     }
   }
   .hover-pop {
@@ -133,8 +134,8 @@
       transform 0.2s,
       color 0.2s,
       background-color 0.2s;
-    &.hover-pop:hover:not(:disabled),
-    &.hover-pop:focus:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       @media screen and (prefers-reduced-motion: no-preference) {
         transform: translate(0.125rem, -0.125rem);
       }
