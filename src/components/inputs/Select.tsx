@@ -28,6 +28,8 @@ const style: ComponentProps<typeof Select>["styles"] = {
     ...base,
     opacity: state.isDisabled ? 1 : 1,
     border: 0,
+    boxShadow: "none",
+    borderRadius: "var(--radius-md)",
   }),
   control: (base) => ({
     ...base,
