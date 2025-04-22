@@ -1,0 +1,61 @@
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    &:has(dialog[open]) {
+      overflow-y: hidden;
+    }
+  }
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+  }
+  button:not(:disabled),
+  a {
+    cursor: pointer;
+  }
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-scrollbar {
+    -webkit-appearance: auto;
+    background-color: color-mix(
+      in oklab,
+      var(--color-secondary) 50%,
+      transparent
+    );
+    height: 0.4rem;
+    width: 0.4rem;
+  }
+  ::-webkit-scrollbar-thumb:vertical,
+  ::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 1.25rem;
+    background-color: var(--color-primary);
+  }
+  ::backdrop {
+    background-color: #0008;
+  }
+}
+
+@layer components {
+  .container {
+    padding-inline: var(--spacing-container-padding);
+    margin-inline: auto;
+  }
+}
