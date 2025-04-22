@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  /* color-mix(in oklab, var(--color-example-primary) %percentage%, transparent) */
+  --color-primary: #00552c;
+  --color-secondary: #f0f0f0;
+  --color-text: #333;
+  --color-accent: #fff;
+
+  --text-section-heading: clamp(1.5rem, 2vw, 2.25rem);
+
+  --spacing-container-padding: 1rem;
+  --spacing-section-padding: 3rem;
+  --spacing-section-margin: 5rem;
+  --spacing-input-py: calc(var(--spacing) * 1.5);
+  --spacing-input-px: calc(var(--spacing) * 4);
+}
+/* 96rem 80rem 64rem 48rem 40rem  */
+@media screen and (min-width: 48rem) {
+  @theme {
+    --spacing-container-padding: 2rem;
+    --spacing-section-padding: 2rem;
+    --spacing-section-margin: 3rem;
+  }
+}
+
+@layer base {
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    position: relative;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    color: var(--color-text);
+    &:has(dialog[open]) {
+      overflow-y: hidden;
+    }
+  }
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+  }
+  button,
+  a {
+    cursor: pointer;
+  }
+  ul > li {
+    display: contents;
+  }
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-scrollbar {
+    -webkit-appearance: auto;
+    background-color: #3334;
+    height: 0.4rem;
+    width: 0.4rem;
+  }
+  ::-webkit-scrollbar-thumb:vertical,
+  ::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 1.25rem;
+    background-color: var(--color-primary);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+  ::backdrop {
+    background-color: #0008;
+  }
+}
+
+@layer components {
+  .container {
+    padding-inline: var(--spacing-container-padding);
+    margin-inline: auto;
+  }
+  /* Button */
+  .button {
+    border-radius: 0.5rem;
+    padding: 0.5rem 2rem;
+    &.button__primary {
+      background-color: var(--color-primary);
+      color: #fff;
+    }
+  }
+  /* Input */
+  .input-field,
+  .select-field {
+    width: 100%;
+    label {
+      margin-bottom: calc(var(--spacing) * 0.5);
+      font-weight: 600;
+      .required {
+        color: var(--color-red-600);
+      }
+    }
+    .error-message {
+      color: var(--color-red-600);
+    }
+  }
+  .input-field {
+    input {
+      padding-block: var(--spacing-input-py);
+      padding-inline: var(--spacing-input-px);
+      width: 100%;
+      border: 1px solid var(--color-gray-400);
+      border-radius: var(--radius-md);
+      background-color: transparent;
+      transition: border-color 0.2s;
+      &:focus,
+      &:hover {
+        border-color: var(--color-example-primary);
+      }
+      &.error {
+        border-color: var(--color-red-600);
+      }
+    }
+  }
+  .hover-pop {
+    display: inline-block;
+    transition:
+      transform 0.2s,
+      color 0.2s,
+      background-color 0.2s;
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      @media screen and (prefers-reduced-motion: no-preference) {
+        transform: translate(0.125rem, -0.125rem);
+      }
+    }
+  }
+}
+
+@utility single-grid {
+  display: grid;
+  grid-template-areas: "a";
+}
+@utility single-grid__item {
+  grid-area: a;
+}
