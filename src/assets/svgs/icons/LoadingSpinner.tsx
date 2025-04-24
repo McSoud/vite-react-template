@@ -1,7 +1,7 @@
-import { TSvgComponentProps } from "@/types/utils/components";
+import { SVGProps } from "react";
 import { twMerge } from "tailwind-merge";
 
-export default function SvgLoadingSpinner(props: TSvgComponentProps) {
+export default function SvgLoadingSpinner(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

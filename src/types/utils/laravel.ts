@@ -1,27 +1,27 @@
-type TLaravelResponse<S = unknown, E = unknown> =
-  | TLaravelSuccess<S>
-  | TLaravelError<E>
+type LaravelResponse<S = unknown, E = unknown> =
+  | LaravelSuccess<S>
+  | LaravelError<E>
   | undefined;
 
-export type TLaravelSuccess<T = unknown> = {
+export interface LaravelSuccess<T = unknown> {
   success: true;
   message: string;
   data: T;
-};
+}
 
-export type TLaravelError<T extends Array<string> | unknown = unknown> = {
+export interface LaravelError<T extends Array<string> | unknown = unknown> {
   success: false;
   message: string;
   errors?: T extends Array<string> ? { [k in T[number]]: string[] } : T;
-};
+}
 
-export type TLaravelObject = {
+export interface LaravelObject {
   id: number;
   created_at: string;
   updated_at: string;
-};
+}
 
-export type TLaravelPagination<T = unknown> = {
+export interface LaravelPagination<T = unknown> {
   current_page: number;
   data: T;
   first_page_url: string;
@@ -35,8 +35,8 @@ export type TLaravelPagination<T = unknown> = {
   prev_page_url: string | null;
   to: number;
   total: number;
-};
+}
 
 export type TODO = any;
 
-export default TLaravelResponse;
+export default LaravelResponse;

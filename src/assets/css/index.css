@@ -58,4 +58,7 @@
     padding-inline: var(--spacing-container-padding);
     margin-inline: auto;
   }
+  dialog {
+    margin: auto;
+  }
 }

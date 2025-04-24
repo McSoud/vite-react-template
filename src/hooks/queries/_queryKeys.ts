@@ -1,3 +1,3 @@
 export default {
-  team: ["team"],
+  faqs: ["faqs"],
 };
