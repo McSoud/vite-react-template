@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, useRef } from "react";
 import { twMerge } from "tailwind-merge";
-import SvgLoadingSpinner from "../svgs/LoadingSpinner";
+import SvgLoadingSpinner from "../../assets/svgs/icons/LoadingSpinner";
 
 type TProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
