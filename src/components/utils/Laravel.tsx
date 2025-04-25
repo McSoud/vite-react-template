@@ -1,4 +1,4 @@
-import TLaravelResponse, {
+import LaravelResponse, {
   LaravelError,
   LaravelSuccess,
 } from "@/types/utils/laravel";
@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 import { toast } from "sonner";
 
 interface Props<T, E> {
-  query: ReturnType<typeof useQuery<TLaravelResponse<T, E>, unknown>>;
+  query: ReturnType<typeof useQuery<LaravelResponse<T, E>, unknown>>;
   toastError?:
     | string
     | ((err: AxiosError<LaravelError<E>> | undefined) => string | ReactNode);
