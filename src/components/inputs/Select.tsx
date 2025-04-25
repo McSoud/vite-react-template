@@ -6,10 +6,10 @@ import {
 } from "react";
 import { twMerge } from "tailwind-merge";
 import Select from "react-select";
+import clsx from "clsx";
 
-type TProps = ComponentProps<typeof Select> & {
+interface Props extends ComponentProps<typeof Select> {
   hidden?: boolean;
-} & {
   name: string;
   label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
   labelClass?: DetailedHTMLProps<
@@ -21,7 +21,7 @@ type TProps = ComponentProps<typeof Select> & {
     HTMLDivElement
   >["className"];
   error?: string;
-};
+}
 
 const style: ComponentProps<typeof Select>["styles"] = {
   container: (base, state) => ({
@@ -66,7 +66,7 @@ function CustomSelect({
   error,
   containerClass,
   ...props
-}: TProps) {
+}: Props) {
   return (
     <div className={twMerge("select-field", containerClass)}>
       <label
@@ -100,7 +100,14 @@ function CustomSelect({
           ...props.styles,
         }}
       />
-      {error && <span className="error-message text-sm">{error}</span>}
+      <div
+        className={clsx(
+          "grid transition-[grid-template-rows] duration-300",
+          error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <p className="error-message overflow-hidden text-sm">{error}</p>
+      </div>
     </div>
   );
 }
