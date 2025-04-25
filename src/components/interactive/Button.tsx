@@ -2,12 +2,16 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import SvgLoadingSpinner from "../../assets/svgs/icons/LoadingSpinner";
 
-type TProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & { isLoading?: boolean; secondary?: boolean };
+interface Props
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  isLoading?: boolean;
+  secondary?: boolean;
+}
 
-export const ButtonPrimary = ({ isLoading, secondary, ...props }: TProps) => {
+export const ButtonPrimary = ({ isLoading, secondary, ...props }: Props) => {
   const ref = useRef<HTMLButtonElement>(null);
   const width = ref !== null ? ref.current?.offsetWidth : 0;
   return (

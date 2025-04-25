@@ -5,16 +5,20 @@ import { toggleModal } from "../../utils/functions";
 import SvgClose from "@/assets/svgs/icons/Close";
 import { ModalId } from "@/types/utils/components";
 
-type TProps = DetailedHTMLProps<
-  DialogHTMLAttributes<HTMLDialogElement>,
-  HTMLDialogElement
-> & {
+interface Props
+  extends Omit<
+    DetailedHTMLProps<
+      DialogHTMLAttributes<HTMLDialogElement>,
+      HTMLDialogElement
+    >,
+    "id" | "children"
+  > {
   id: ModalId;
   children: ReactNode;
   heading?: ReactNode;
-};
+}
 
-export default function Modal({ id, children, heading, ...props }: TProps) {
+export default function Modal({ id, children, heading, ...props }: Props) {
   return createPortal(
     <dialog role="dialog" {...props} id={`${id}-modal`} className="modal">
       <header>

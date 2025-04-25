@@ -7,14 +7,33 @@ src
 ├── App.css
 ├── App.tsx (routes)
 ├── main.tsx
+├── assets
+│   ├── css
+│   │   ├── fonts.css
+│   │   ├── index.css
+│   │   └── ...files.css (map, slider, etc.)
+│   ├── images
+│   │   ├── common
+│   │   ├── pages
+│   │   └── ...directories (dots, blobs, etc.)
+│   └── svgs
+│       ├── icons
+│       │   ├── Close.tsx
+│       │   ├── LoadingSpinner.tsx
+│       │   └── ...icons (trash, check, etc.)
+│       └── ...directories or files.tsx
 ├── components
-│   ├── interactive
-│   │   ├── Button.tsx
-│   │   └── Link.tsx
+│   ├── common
+│   │   └── ...directories or files.tsx (socials, cards, etc.)
 │   ├── inputs
+│   │   ├── Checkbox.tsx
 │   │   ├── Input.tsx
+│   │   ├── Radio.tsx
 │   │   └── Select.tsx
-│   └── other components
+│   ├── interactive
+│   │   └── Button.tsx
+│   ├── sections
+│   │   └── directories or files.tsx (contact, faq, etc.)
 │   ├── template
 │   │   ├── Footer.tsx
 │   │   ├── Header.tsx
@@ -23,25 +42,30 @@ src
 │   └── utils
 │       ├── Laravel.tsx
 │       └── RequiresAuthentication.tsx
+├── hooks
+│   ├── queries (queries and mutations)
+│   │   ├── _queryKeys.ts
+│   │   └── ...directories or files.ts (user, team, etc.)
+│   └── utils
+│       ├── title.ts
+│       └── ...files.ts
 ├── constants
 │   └── ...constants.ts (const SCREAMING_SNAKE_CASE)
 ├── pages
 │   ├── NotFound.tsx
-│   └── home
-│       ├── _hooks.tsx
-│       ├── _index.tsx
-│       └── ...OtherComponents.tsx
+│   ├── home
+│   │   ├── _hooks.tsx
+│   │   ├── _index.tsx
+│   │   └── ...OtherComponents.tsx
+│   └── ...directories or files.tsx (about, pricing, etc.)
 ├── types
-│   ├── ...otherTypes.ts
+│   ├── ...files.ts
 │   └── utils
 │       ├── components.tsx
 │       └── laravel.ts
-├── utils
-│   ├── functions.ts
-│   ├── middleware.ts
-│   └── hooks
-│       └── title.ts
-└── vite.config.ts
+└── utils
+    ├── functions.ts
+    └── middleware.ts
 ```
 
 ## Project dependencies
