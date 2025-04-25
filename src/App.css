@@ -43,12 +43,11 @@
       color: #fff;
     }
   }
-  /* Input */
+  /* Inputs */
   .input-field,
   .select-field {
     width: 100%;
     label {
-      margin-bottom: calc(var(--spacing) * 0.5);
       font-weight: 600;
       .required {
         color: var(--color-red-600);
@@ -75,6 +74,20 @@
         border-color: var(--color-red-600);
       }
     }
+  }
+  .radio-field {
+    label {
+      cursor: pointer;
+    }
+    .error-message {
+      color: var(--color-red-600);
+    }
+  }
+  /* Checkbox */
+  .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
   /* Modal */
   dialog.modal {

@@ -10,10 +10,11 @@ import {
 } from "react";
 import { twMerge } from "tailwind-merge";
 
-type TProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & {
+interface Props
+  extends Omit<
+    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+    "name" | "title" | "type"
+  > {
   name: string;
   title: string;
   type: Omit<HTMLInputTypeAttribute, "checkbox" | "hidden" | "radio">;
@@ -25,9 +26,9 @@ type TProps = DetailedHTMLProps<
   >["className"];
   error?: string | null;
   ref: ForwardedRef<HTMLInputElement>;
-};
+}
 
-const CustomInput = forwardRef<HTMLInputElement, TProps>(
+const CustomInput = forwardRef<HTMLInputElement, Props>(
   ({ label = false, labelClass, containerClass, error, ...props }, ref) => {
     return (
       <div className={twMerge("input-field", containerClass)}>
@@ -42,12 +43,13 @@ const CustomInput = forwardRef<HTMLInputElement, TProps>(
         <input
           id={props.name ? `${props.name}-input` : undefined}
           {...props}
+          type={props.type as HTMLInputTypeAttribute}
           ref={ref}
           className={twMerge(error && "error", props.className)}
         />
         <div
           className={clsx(
-            "grid duration-300",
+            "grid transition-[grid-template-rows] duration-300",
             error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
           )}
         >

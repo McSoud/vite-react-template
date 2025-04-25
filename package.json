@@ -1,8 +1,33 @@
 {
-  "name": "react-template",
-  "author": "mcsoud",
+  "name": "vite-react-template",
+  "version": "1.0.2",
   "private": true,
-  "version": "1.0.1",
+  "author": {
+    "name": "mcsoud",
+    "email": "mcsoud@gmail.com",
+    "url": "https://github.com/mcsoud"
+  },
+  "description": "A vite + react template",
+  "homepage": "https://github.com/mcsoud/vite-react-template",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcsoud/vite-react-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcsoud/vite-react-template/issues"
+  },
+  "keywords": [
+    "vite",
+    "react",
+    "template",
+    "tailwindcss",
+    "typescript",
+    "laravel"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
