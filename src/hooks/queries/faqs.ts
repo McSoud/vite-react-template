@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import _queryKeys from "./_queryKeys";
 import axios from "axios";
 import { FAQ } from "@/pages/home/_index";
-import LaravelResponse from "@/types/utils/laravel";
+import { LaravelResponse } from "@mcsoud/laravel";
 
 export default function useQueryFaqs() {
   return useQuery({
