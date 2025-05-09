@@ -18,7 +18,7 @@ export default function Main({ id, ...props }: Props) {
       id={`${id}-content`}
       role="main"
       {...props}
-      className={twMerge("h-full flex-grow content-center", props.className)}
+      className={twMerge("h-full flex-grow", props.className)}
     />
   );
 }
