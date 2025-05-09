@@ -4,12 +4,16 @@ import {
   HTMLAttributes,
   InputHTMLAttributes,
   LabelHTMLAttributes,
+  ReactNode,
 } from "react";
 import { useForm } from "react-hook-form";
-import { twMerge } from "tailwind-merge";
 
 interface Props {
   choices: Input[];
+  className?: DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >["className"];
   error?: string | null;
 }
 
@@ -26,34 +30,38 @@ interface Input
     HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >["className"];
+  children: ReactNode;
   register?: ReturnType<typeof useForm>["register"];
 }
 
-export default function CustomCheckbox({ choices, error }: Props) {
+export default function CustomCheckbox({ choices, error, className }: Props) {
   return (
-    <div className="checkbox-field">
+    <div className={className}>
       {choices.map(function (
-        { containerClass, className, label, labelClass, ...choices },
+        { containerClass, className, label, labelClass, children, ...choice },
         i,
       ) {
         return (
           <div key={i} className={containerClass}>
-            <input
-              id={choices.name ? `${choices.name}-input` : undefined}
-              {...choices}
-              type="checkbox"
-              className={twMerge(error && "error", className)}
-            />
-            <label
-              hidden={!label}
-              htmlFor={
-                choices.id ??
-                (choices.name ? `${choices.name}-input` : undefined)
-              }
-              className={labelClass}
-            >
-              {label === true ? choices.title : label}
-            </label>
+            <div className="checkbox-field">
+              <input
+                id={choice.name ? `${choice.name}-input` : undefined}
+                {...choice}
+                type="checkbox"
+                className={className}
+              />
+              <label
+                hidden={!label}
+                htmlFor={
+                  choice.id ??
+                  (choice.name ? `${choice.name}-input` : undefined)
+                }
+                className={labelClass}
+              >
+                {label === true ? choice.title : label}
+              </label>
+            </div>
+            {children}
           </div>
         );
       })}
