@@ -31,7 +31,7 @@ const style: ComponentProps<typeof Select>["styles"] = {
   }),
   control: (base) => ({
     ...base,
-    borderRadius: "var(--radius-md)",
+    borderRadius: "var(--radius-xl)",
     boxShadow: "none",
     minHeight: "auto",
     backgroundColor: "transparent",
@@ -86,8 +86,8 @@ function CustomSelect({
         {...props}
         styles={{
           ...style,
-          control: (base) => ({
-            ...base,
+          control: (base, state) => ({
+            ...style?.control?.(base, state),
             borderColor: error
               ? "var(--color-red-600)"
               : "var(--color-gray-400)",
