@@ -40,7 +40,6 @@ src
 │   │   ├── Main.tsx
 │   │   └── Modal.tsx
 │   └── utils
-│       ├── Laravel.tsx
 │       └── RequiresAuthentication.tsx
 ├── hooks
 │   ├── queries (queries and mutations)
