@@ -1,3 +1,27 @@
+@theme {
+  --animate-fade-in: fadeIn 0.5s linear forwards;
+  --animate-loading-fade-out: fadeOut 0.5s linear forwards;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      display: none;
+    }
+  }
+}
+
 @layer base {
   :root {
     scroll-behavior: smooth;
