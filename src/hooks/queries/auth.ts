@@ -3,8 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import _queryKeys from "./_queryKeys";
-import { LaravelResponse } from "@mcsoud/laravel";
-import { TODO } from "@/types/utils/components";
+import { LaravelObject, LaravelResponse } from "@mcsoud/laravel";
 
 export function useUser(login = false) {
   const { pathname } = useLocation();
@@ -16,10 +15,10 @@ export function useUser(login = false) {
     queryFn: async () => {
       if (!token) return null;
       try {
-        const res = await axios.get<LaravelResponse<TODO>>("/me");
+        const res = await axios.get<LaravelResponse<LaravelObject>>("/me");
         if (res.data?.success) {
           toast.success("Welcome back!");
-          return res.data.data;
+          return res.data;
         }
         return null;
       } catch (err) {
