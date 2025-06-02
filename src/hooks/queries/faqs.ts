@@ -8,7 +8,7 @@ export default function useQueryFaqs() {
   return useQuery({
     queryKey: _queryKeys.faqs,
     queryFn: async function () {
-      return (await axios.get<LaravelResponse<FAQ[]>>("/faqssssss")).data;
+      return (await axios.get<LaravelResponse<FAQ[]>>("/faqs")).data;
     },
     staleTime: 5_000,
   });

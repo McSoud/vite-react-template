@@ -1,0 +1,16 @@
+import Main from "@/components/template/Main";
+import ROUTES from "@/constants/routes";
+import { Link, useParams } from "react-router-dom";
+
+export default function PagePostSingle() {
+  const { id } = useParams();
+  return (
+    <Main id="single-post">
+      <h1 hidden>Single Post</h1>
+      <p>ID: {id}</p>
+      <Link to={ROUTES.posts.single.id((Math.random() * 100).toFixed(0))}>
+        Go Random
+      </Link>
+    </Main>
+  );
+}

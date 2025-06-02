@@ -19,7 +19,9 @@ export default function PageHome() {
         <Display
           loading={<Loading className="bg-red-500" />}
           success={(data) => (
-            <p className="content-center text-center">{data[0].question}</p>
+            <p className="animate-fade-in content-center text-center">
+              {data[0].question}
+            </p>
           )}
         />
       </div>

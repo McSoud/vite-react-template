@@ -47,7 +47,7 @@ export function useLogout() {
       navigate(0);
     },
     onError: () => {
-      console.error("Logout failed.");
+      console.warn("Logout failed.");
       toast.warning("Logout incomplete.");
     },
     onSettled: () => {
