@@ -1,5 +1,5 @@
 import Main from "@/components/template/Main";
-import ROUTES from "@/constants/routes";
+import ROUTES from "@/constants/utils/routes";
 import { Link, useParams } from "react-router-dom";
 
 export default function PagePostSingle() {

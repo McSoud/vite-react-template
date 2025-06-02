@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import _queryKeys from "./_queryKeys";
 import { LaravelObject, LaravelResponse } from "@mcsoud/laravel";
+import QUERY_KEYS from "@/constants/utils/queryKeys";
 
 export function useUser(login = false) {
   const { pathname } = useLocation();
@@ -11,7 +11,7 @@ export function useUser(login = false) {
   const token = localStorage.getItem("token");
   const queryClient = useQueryClient();
   const query = useQuery({
-    queryKey: _queryKeys.user,
+    queryKey: QUERY_KEYS.user,
     queryFn: async () => {
       if (!token) return null;
       try {
@@ -25,7 +25,7 @@ export function useUser(login = false) {
         if (pathname !== "verify-email") {
           toast.error("Token invalid.");
           localStorage.removeItem("token");
-          queryClient.setQueryData(_queryKeys.user, null);
+          queryClient.setQueryData(QUERY_KEYS.user, null);
           if (login) navigate("/login");
         }
         return null;
@@ -52,7 +52,7 @@ export function useLogout() {
     },
     onSettled: () => {
       localStorage.removeItem("token");
-      queryClient.setQueryData(_queryKeys.user, null);
+      queryClient.setQueryData(QUERY_KEYS.user, null);
     },
   });
   return mutate;

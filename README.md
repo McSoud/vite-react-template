@@ -41,15 +41,17 @@ src
 │   │   └── Modal.tsx
 │   └── utils
 │       └── RequiresAuthentication.tsx
+├── constants
+│   ├── utils
+│   │   ├── queryKeys.tsx
+│   │   └── routes.tsx (App routes)
+│   └── ...constants.ts (const SCREAMING_SNAKE_CASE)
 ├── hooks
 │   ├── queries (queries and mutations)
-│   │   ├── _queryKeys.ts
 │   │   └── ...directories or files.ts (user, team, etc.)
 │   └── utils
 │       ├── title.ts
 │       └── ...files.ts
-├── constants
-│   └── ...constants.ts (const SCREAMING_SNAKE_CASE)
 ├── pages
 │   ├── NotFound.tsx
 │   ├── home
