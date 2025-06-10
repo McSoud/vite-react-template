@@ -39,8 +39,6 @@ src
 │   │   ├── Header.tsx
 │   │   ├── Main.tsx
 │   │   └── Modal.tsx
-│   └── utils
-│       └── RequiresAuthentication.tsx
 ├── constants
 │   ├── utils
 │   │   ├── queryKeys.tsx
@@ -49,9 +47,10 @@ src
 ├── hooks
 │   ├── queries (queries and mutations)
 │   │   └── ...directories or files.ts (user, team, etc.)
-│   └── utils
-│       ├── title.ts
-│       └── ...files.ts
+│   ├── utils
+│   │   ├── title.ts
+│   │   └── ...files.ts
+│   └── ...directories or hook.ts for common hooks (auth, posts, etc.)
 ├── pages
 │   ├── NotFound.tsx
 │   ├── home

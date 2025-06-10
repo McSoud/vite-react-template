@@ -1,7 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import ROUTES from "./constants/utils/routes";
-import RequiresAuthentication from "./components/utils/RequiresAuthentication";
 import PageNotFound from "./pages/NotFound";
 import Header from "./components/template/Header";
 import Footer from "./components/template/Footer";
@@ -29,9 +28,7 @@ function App() {
           <Route path={ROUTES.home} element={<PageHome />} />
           <Route path={ROUTES.posts.single} element={<PagePostSingle />} />
           {/* Requires Authentication */}
-          <Route element={<RequiresAuthentication />}>
-            <Route path={ROUTES.dashboard} element={<PageDashboard />} />
-          </Route>
+          <Route path={ROUTES.dashboard} element={<PageDashboard />} />
         </Route>
         <Route path={ROUTES.notFound} element={<PageNotFound />} />
       </Routes>

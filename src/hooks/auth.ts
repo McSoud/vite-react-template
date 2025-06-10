@@ -13,7 +13,10 @@ export function useUser(login = false) {
   const query = useQuery({
     queryKey: QUERY_KEYS.user,
     queryFn: async () => {
-      if (!token) return null;
+      if (!token) {
+        if (login) navigate("/login");
+        return null;
+      }
       try {
         const res = await axios.get<LaravelResponse<LaravelObject>>("/me");
         if (res.data?.success) {

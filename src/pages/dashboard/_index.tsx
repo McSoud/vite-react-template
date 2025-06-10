@@ -1,5 +1,5 @@
 import Main from "@/components/template/Main";
-import { useUser } from "@/hooks/queries/auth";
+import { useUser } from "@/hooks/auth";
 
 export default function PageDashboard() {
   useUser(true);
