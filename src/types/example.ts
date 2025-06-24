@@ -1,4 +1,4 @@
-import { LaravelObject } from "@mcsoud/laravel";
+import { LaravelObject } from "@mcsoud/types";
 
 export default interface Example extends LaravelObject {
   role: ExampleRole;

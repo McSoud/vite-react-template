@@ -1,4 +1,4 @@
-import Main from "@/components/template/Main";
+import {Main} from "@mcsoud/react-ui";
 import { useUser } from "@/hooks/auth";
 
 export default function PageDashboard() {

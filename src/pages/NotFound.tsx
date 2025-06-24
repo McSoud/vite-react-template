@@ -1,4 +1,4 @@
-import Main from "@/components/template/Main";
+import { Main } from "@mcsoud/react-ui";
 import { Link } from "react-router-dom";
 
 export default function PageNotFound() {

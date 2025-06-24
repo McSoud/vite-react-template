@@ -2,8 +2,8 @@ import { DetailedHTMLProps, DialogHTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import { createPortal } from "react-dom";
 import { toggleModal } from "../../utils/functions";
-import SvgClose from "@/assets/svgs/icons/Close";
 import { ModalId } from "@/types/utils/components";
+import { SvgClose } from "@mcsoud/react-ui";
 
 interface Props
   extends Omit<

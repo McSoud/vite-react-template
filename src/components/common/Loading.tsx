@@ -1,4 +1,4 @@
-import SvgLoadingSpinner from "@/assets/svgs/icons/LoadingSpinner";
+import { SvgLoadingSpinner } from "@mcsoud/react-ui";
 import clsx from "clsx";
 import { DetailedHTMLProps, HTMLAttributes, SVGProps, useState } from "react";
 import { twMerge } from "tailwind-merge";

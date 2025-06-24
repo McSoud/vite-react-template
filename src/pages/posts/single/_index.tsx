@@ -1,4 +1,4 @@
-import Main from "@/components/template/Main";
+import { Main } from "@mcsoud/react-ui";
 import ROUTES from "@/constants/utils/routes";
 import { Link, useParams } from "react-router-dom";
 

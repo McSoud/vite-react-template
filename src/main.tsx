@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "@/utils/middleware.ts";
-import { laravelOptions } from "@mcsoud/laravel";
+import { LARAVEL_OPTIONS } from "@mcsoud/react-ui";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,9 +13,9 @@ const queryClient = new QueryClient({
   },
 });
 
-laravelOptions.loading = <p>Loading...</p>;
-laravelOptions.error = <p>Oops</p>;
-laravelOptions.errorToast = "Error yow";
+LARAVEL_OPTIONS.loading = <p>Loading...</p>;
+LARAVEL_OPTIONS.error = <p>Oops</p>;
+LARAVEL_OPTIONS.errorToast = "Error yow";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

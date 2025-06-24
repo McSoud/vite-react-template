@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { LaravelObject, LaravelResponse } from "@mcsoud/laravel";
+import { LaravelObject, LaravelResponse } from "@mcsoud/types";
 import QUERY_KEYS from "@/constants/utils/queryKeys";
 
 export function useUser(login = false) {

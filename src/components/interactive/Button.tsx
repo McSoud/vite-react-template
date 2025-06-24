@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, useRef } from "react";
 import { twMerge } from "tailwind-merge";
-import SvgLoadingSpinner from "../../assets/svgs/icons/LoadingSpinner";
+import { SvgLoadingSpinner } from "@mcsoud/react-ui";
 
 interface Props
   extends DetailedHTMLProps<

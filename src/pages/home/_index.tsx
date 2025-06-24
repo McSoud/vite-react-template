@@ -1,7 +1,8 @@
-import Loading from "@/components/common/Loading";
-import Main from "@/components/template/Main";
+import { Main } from "@mcsoud/react-ui";
 import useQueryFaqs from "@/hooks/queries/faqs";
-import { LaravelObject, useLaravelQuery } from "@mcsoud/laravel";
+import { useLaravelQuery } from "@mcsoud/react-ui";
+import { LaravelObject } from "@mcsoud/types";
+
 export interface FAQ extends LaravelObject {
   question: string;
   answer: string;
@@ -17,7 +18,6 @@ export default function PageHome() {
       <h1 hidden>Home</h1>
       <div className="grid h-120 grid-cols-2">
         <Display
-          loading={<Loading className="bg-red-500" />}
           success={(data) => (
             <p className="animate-fade-in content-center text-center">
               {data[0].question}
