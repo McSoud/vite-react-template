@@ -5,7 +5,14 @@ import { Toaster } from "sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "@/utils/middleware.ts";
-import { LARAVEL_OPTIONS } from "@mcsoud/react-ui";
+import { UI_OPTIONS } from "@mcsoud/react-ui";
+import { Modals } from "./types/utils/components.ts";
+
+declare module "@mcsoud/react-ui" {
+  interface ModalsRegistration {
+    modals: Modals;
+  }
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,9 +20,9 @@ const queryClient = new QueryClient({
   },
 });
 
-LARAVEL_OPTIONS.loading = <p>Loading...</p>;
-LARAVEL_OPTIONS.error = <p>Oops</p>;
-LARAVEL_OPTIONS.errorToast = "Error yow";
+UI_OPTIONS.loading = <p>Loading...</p>;
+UI_OPTIONS.error = <p>Oops</p>;
+UI_OPTIONS.errorToast = "Error yow";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

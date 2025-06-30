@@ -20,7 +20,7 @@
 }
 /* 96rem 80rem 64rem 48rem 40rem  */
 @media screen and (min-width: 48rem) {
-  @theme {
+  :root {
     --spacing-container-padding: 2rem;
     --spacing-section-padding: 2rem;
     --spacing-section-margin: 3rem;
@@ -89,22 +89,6 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-  }
-  /* Modal */
-  dialog.modal {
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    header {
-      padding: 0.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      .close svg {
-        width: 1.25rem;
-        height: 1.25rem;
-      }
-    }
   }
   /* Hover */
   .hover-pop {

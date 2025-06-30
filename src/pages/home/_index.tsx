@@ -1,4 +1,4 @@
-import { Main } from "@mcsoud/react-ui";
+import { Main, Modal, toggleModal } from "@mcsoud/react-ui";
 import useQueryFaqs from "@/hooks/queries/faqs";
 import { useLaravelQuery } from "@mcsoud/react-ui";
 import { LaravelObject } from "@mcsoud/types";
@@ -16,15 +16,13 @@ export default function PageHome() {
   return (
     <Main id="home">
       <h1 hidden>Home</h1>
-      <div className="grid h-120 grid-cols-2">
-        <Display
-          success={(data) => (
-            <p className="animate-fade-in content-center text-center">
-              {data[0].question}
-            </p>
-          )}
-        />
-      </div>
+      <section id="home-faqs" className="container">
+        <Display success={(data) => data[0].question} />
+        <button type="button" onClick={() => toggleModal("test")}>
+          Button
+        </button>
+        <Modal id="test">Testings</Modal>
+      </section>
     </Main>
   );
 }
