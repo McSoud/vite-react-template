@@ -18,20 +18,22 @@ export const ButtonPrimary = ({ isLoading, secondary, ...props }: Props) => {
       type="button"
       {...props}
       disabled={isLoading || props.disabled}
-      className={twMerge("button primary", props.className)}
+      className={twMerge("button primary single-grid", props.className)}
     >
-      <div
-        className={twMerge(
-          clsx(
-            "button primary absolute inset-0 grid place-items-center transition-opacity duration-300",
-            isLoading ? "opacity-100" : "opacity-0",
-          ),
-          props.className,
+      <SvgLoadingSpinner
+        className={clsx(
+          "single-grid__item m-auto w-6 animate-spin fill-white transition-opacity duration-300",
+          isLoading ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <span
+        className={clsx(
+          "single-grid__item",
+          isLoading ? "opacity-0" : "opacity-100",
         )}
       >
-        <SvgLoadingSpinner className="w-6 animate-spin fill-white" />
-      </div>
-      {props.children ?? props.title}
+        {props.children ?? props.title}
+      </span>
     </button>
   );
 };
