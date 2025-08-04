@@ -1,5 +1,5 @@
 import { Main } from "@mcsoud/react-ui";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 export default function PageNotFound() {
   return (
@@ -12,7 +12,7 @@ export default function PageNotFound() {
         <h2 className="mb-4 text-4xl">This page is not available.</h2>
         <p>
           Click&nbsp;
-          <Link className="hover-pop" to="/">
+          <Link to="/" title="Home" className="text-primary hover-pop">
             Here
           </Link>
           &nbsp;to be redirected to the homepage.

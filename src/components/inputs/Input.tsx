@@ -1,3 +1,5 @@
+import SvgEye from "@/assets/svgs/icons/Eye";
+import SvgEyeOff from "@/assets/svgs/icons/EyeOff";
 import clsx from "clsx";
 import {
   DetailedHTMLProps,
@@ -7,6 +9,7 @@ import {
   InputHTMLAttributes,
   LabelHTMLAttributes,
   forwardRef,
+  useState,
 } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -40,13 +43,17 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
           {label === true ? props.title : label}
           {props.required && label && <span className="required">&nbsp;*</span>}
         </label>
-        <input
-          id={props.name ? `${props.name}-input` : undefined}
-          {...props}
-          type={props.type as HTMLInputTypeAttribute}
-          ref={ref}
-          className={twMerge(error && "error", props.className)}
-        />
+        {props.type === "password" ? (
+          <Password {...props} ref={ref} />
+        ) : (
+          <input
+            id={props.name ? `${props.name}-input` : undefined}
+            {...props}
+            type={props.type as HTMLInputTypeAttribute}
+            ref={ref}
+            className={twMerge(error && "error", props.className)}
+          />
+        )}
         <div
           className={clsx(
             "grid transition-[grid-template-rows] duration-300",
@@ -59,5 +66,28 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
     );
   },
 );
-
 export default CustomInput;
+
+interface PasswordProps
+  extends Omit<Props, "type" | "label" | "labelClass" | "containerClass"> {}
+
+function Password(props: PasswordProps) {
+  const [show, setShow] = useState(false);
+  function toggle() {
+    setShow((prev) => !prev);
+  }
+  return (
+    <div className="password-field">
+      <input
+        id={props.name ?? `${props.name}-input`}
+        {...props}
+        type={show ? "text" : "password"}
+        ref={props.ref}
+        className={twMerge(props.error && "error", props.className)}
+      />
+      <button type="button" title={show ? "Hide" : "Show"} onClick={toggle}>
+        {show ? <SvgEyeOff /> : <SvgEye />}
+      </button>
+    </div>
+  );
+}

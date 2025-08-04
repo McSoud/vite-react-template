@@ -41,8 +41,7 @@ src
 │   │   └── Modal.tsx
 ├── constants
 │   ├── utils
-│   │   ├── queryKeys.tsx
-│   │   └── routes.tsx (App routes)
+│   │   └── queryKeys.ts
 │   └── ...constants.ts (const SCREAMING_SNAKE_CASE)
 ├── hooks
 │   ├── queries (queries and mutations)
@@ -74,7 +73,7 @@ The project is using the following dependencies:
 react
 typescript
 axios
-react-router-dom
+@tanstack/react-router
 @tanstack/react-query
 tailwindcss
 clsx
@@ -88,8 +87,11 @@ React is the library used to create the user interface.
 "typescript": "~5.7.2" -D
 Typescript is used for making the project type safe.
 
-"react-router-dom": "^7.1.5"
-React-router-dom is used to handle the routing of the application.
+"@tanstack/react-router": "^1.130.12"
+Tanstack-router is used to handle the routing of the application.
+
+"@tanstack/react-router-devtools": "^1.130.13" -D
+TanstackQuery devtools is used to debug the router.
 
 "axios": "^1.7.9"
 Axios is used to make http requests.

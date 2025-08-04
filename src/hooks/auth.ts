@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { LaravelObject, LaravelResponse } from "@mcsoud/types";
 import QUERY_KEYS from "@/constants/utils/queryKeys";
@@ -14,7 +14,10 @@ export function useUser(login = false) {
     queryKey: QUERY_KEYS.user,
     queryFn: async () => {
       if (!token) {
-        if (login) navigate("/login");
+        if (login)
+          navigate({
+            to: "/login",
+          });
         return null;
       }
       try {
@@ -29,7 +32,7 @@ export function useUser(login = false) {
           toast.error("Token invalid.");
           localStorage.removeItem("token");
           queryClient.setQueryData(QUERY_KEYS.user, null);
-          if (login) navigate("/login");
+          if (login) navigate({ to: "/login" });
         }
         return null;
       }
@@ -39,7 +42,7 @@ export function useUser(login = false) {
 }
 
 export function useLogout() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: async () => {
@@ -47,7 +50,7 @@ export function useLogout() {
     },
     onSuccess: () => {
       toast.success("Logout successful.");
-      navigate(0);
+      router.history.back();
     },
     onError: () => {
       console.warn("Logout failed.");

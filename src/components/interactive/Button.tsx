@@ -1,6 +1,7 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, useRef } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { twMerge } from "tailwind-merge";
 import { SvgLoadingSpinner } from "@mcsoud/react-ui";
+import clsx from "clsx";
 
 interface Props
   extends DetailedHTMLProps<
@@ -12,22 +13,25 @@ interface Props
 }
 
 export const ButtonPrimary = ({ isLoading, secondary, ...props }: Props) => {
-  const ref = useRef<HTMLButtonElement>(null);
-  const width = ref !== null ? ref.current?.offsetWidth : 0;
   return (
     <button
       type="button"
-      style={{ width: isLoading ? `${width}px` : undefined }}
       {...props}
       disabled={isLoading || props.disabled}
-      ref={ref}
-      className={twMerge("button button__primary", props.className)}
+      className={twMerge("button primary", props.className)}
     >
-      {isLoading ? (
-        <SvgLoadingSpinner className="mx-auto w-6" />
-      ) : (
-        (props.children ?? props.title)
-      )}
+      <div
+        className={twMerge(
+          clsx(
+            "button primary absolute inset-0 grid place-items-center transition-opacity duration-300",
+            isLoading ? "opacity-100" : "opacity-0",
+          ),
+          props.className,
+        )}
+      >
+        <SvgLoadingSpinner className="w-6 animate-spin fill-white" />
+      </div>
+      {props.children ?? props.title}
     </button>
   );
 };

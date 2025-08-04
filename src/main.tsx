@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "@/utils/middleware.ts";
 import { UI_OPTIONS } from "@mcsoud/react-ui";
-import { Modals } from "./types/utils/components.ts";
+import { Modals } from "./types/_utils.ts";
 
 declare module "@mcsoud/react-ui" {
   interface ModalsRegistration {
