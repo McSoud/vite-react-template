@@ -3,7 +3,7 @@
 @import "./assets/css/index.css";
 
 @theme {
-  /* color-mix(in oklab, var(--color-example-primary) percentage%, transparent) */
+  /* color-mix(in oklab, var(--color-primary) percentage%, transparent) */
   --color-primary: #00552c;
   --color-secondary: #f0f0f0;
   --color-text: #333;
@@ -38,7 +38,7 @@
   .button {
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
-    &.button__primary {
+    &.primary {
       background-color: var(--color-primary);
       color: #fff;
     }

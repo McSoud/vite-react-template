@@ -1,0 +1,1 @@
+Check the custom checkbox and radio components.
