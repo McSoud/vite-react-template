@@ -8,17 +8,17 @@ import "@/utils/middleware.ts";
 import { UI_OPTIONS } from "@mcsoud/react-ui";
 import { Modals } from "./types/_utils.ts";
 
-declare module "@mcsoud/react-ui" {
-  interface ModalsRegistration {
-    modals: Modals;
-  }
-}
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { retry: false, refetchOnWindowFocus: false, staleTime: 120_000 },
   },
 });
+
+declare module "@mcsoud/react-ui" {
+  interface ModalsRegistration {
+    modals: Modals;
+  }
+}
 
 UI_OPTIONS.loading = <p>Loading...</p>;
 UI_OPTIONS.error = <p>Oops</p>;
