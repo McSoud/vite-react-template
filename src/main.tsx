@@ -20,9 +20,11 @@ declare module "@mcsoud/react-ui" {
   }
 }
 
-UI_OPTIONS.loading = <p>Loading...</p>;
-UI_OPTIONS.error = <p>Oops</p>;
-UI_OPTIONS.errorToast = "Error yow";
+UI_OPTIONS.laravelDisplay = {
+  loading: <p>Loading...</p>,
+  error: <p>Oops</p>,
+  errorToast: "Error yow",
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

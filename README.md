@@ -36,19 +36,15 @@ src
 │   │   └── directories or files.tsx (contact, faq, etc.)
 │   ├── template
 │   │   ├── Footer.tsx
-│   │   ├── Header.tsx
-│   │   ├── Main.tsx
-│   │   └── Modal.tsx
+│   │   └── Header.tsx
 ├── constants
 │   ├── utils
 │   │   └── queryKeys.ts
 │   └── ...constants.ts (const SCREAMING_SNAKE_CASE)
 ├── hooks
+│   ├── _utils.ts_
 │   ├── queries (queries and mutations)
 │   │   └── ...directories or files.ts (user, team, etc.)
-│   ├── utils
-│   │   ├── title.ts
-│   │   └── ...files.ts
 │   └── ...directories or hook.ts for common hooks (auth, posts, etc.)
 ├── pages
 │   ├── NotFound.tsx
@@ -58,10 +54,8 @@ src
 │   │   └── ...OtherComponents.tsx
 │   └── ...directories or files.tsx (about, pricing, etc.)
 ├── types
-│   ├── ...files.ts
-│   └── utils
-│       ├── components.tsx
-│       └── laravel.ts
+│   ├── _utils.ts
+│   └── ...files.ts
 └── utils
     ├── functions.ts
     └── middleware.ts

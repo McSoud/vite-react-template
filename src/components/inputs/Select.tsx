@@ -5,10 +5,10 @@ import {
   LabelHTMLAttributes,
 } from "react";
 import { twMerge } from "tailwind-merge";
-import Select from "react-select";
+import Sel from "react-select";
 import clsx from "clsx";
 
-interface Props extends ComponentProps<typeof Select> {
+interface Props extends ComponentProps<typeof Sel> {
   hidden?: boolean;
   name: string;
   label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
@@ -23,7 +23,7 @@ interface Props extends ComponentProps<typeof Select> {
   error?: string;
 }
 
-const style: ComponentProps<typeof Select>["styles"] = {
+const style: ComponentProps<typeof Sel>["styles"] = {
   container: (base, state) => ({
     ...base,
     opacity: state.isDisabled ? 1 : 1,
@@ -50,7 +50,7 @@ const style: ComponentProps<typeof Select>["styles"] = {
     color: state.isSelected || state.isFocused ? "white" : "black",
     backgroundColor:
       state.isSelected || state.isFocused
-        ? "var(--color-example-primary)"
+        ? "var(--color-primary)"
         : "transparent",
     transition: "background-color 0.5s, color 0.5s",
   }),
@@ -60,7 +60,7 @@ const style: ComponentProps<typeof Select>["styles"] = {
   }),
 };
 
-function CustomSelect({
+export default function Select({
   label,
   labelClass,
   error,
@@ -79,7 +79,7 @@ function CustomSelect({
         {label}
         {props.required && label && <span className="required">&nbsp;*</span>}
       </label>
-      <Select
+      <Sel
         inputId={props.name ? `select-${props.name}-input` : undefined}
         instanceId={`${props?.name}`}
         isClearable
@@ -106,10 +106,10 @@ function CustomSelect({
           error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
-        <p className="error-message overflow-hidden text-sm">{error}</p>
+        <p className="input-error-message overflow-hidden text-sm">
+          {error ?? <>&nbsp;</>}
+        </p>
       </div>
     </div>
   );
 }
-
-export default CustomSelect;

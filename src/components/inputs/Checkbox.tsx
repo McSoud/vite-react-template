@@ -6,7 +6,6 @@ import {
   LabelHTMLAttributes,
   ReactNode,
 } from "react";
-import { useForm } from "react-hook-form";
 
 interface Props {
   choices: Input[];
@@ -30,11 +29,10 @@ interface Input
     HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >["className"];
-  children: ReactNode;
-  register?: ReturnType<typeof useForm>["register"];
+  children?: ReactNode;
 }
 
-export default function CustomCheckbox({ choices, error, className }: Props) {
+export default function Checkbox({ choices, error, className }: Props) {
   return (
     <div className={className}>
       {choices.map(function (
@@ -71,7 +69,9 @@ export default function CustomCheckbox({ choices, error, className }: Props) {
           error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
-        <p className="error-message overflow-hidden text-sm">{error}</p>
+        <p className="input-error-message overflow-hidden text-sm">
+          {error ?? <>&nbsp;</>}
+        </p>
       </div>
     </div>
   );

@@ -1,18 +1,14 @@
-import SvgEye from "@/assets/svgs/icons/Eye";
-import SvgEyeOff from "@/assets/svgs/icons/EyeOff";
+import { SvgEye, SvgEyeOff } from "@mcsoud/react-ui";
 import clsx from "clsx";
 import {
   DetailedHTMLProps,
-  ForwardedRef,
   HTMLAttributes,
   HTMLInputTypeAttribute,
   InputHTMLAttributes,
   LabelHTMLAttributes,
-  forwardRef,
   useState,
 } from "react";
 import { twMerge } from "tailwind-merge";
-
 interface Props
   extends Omit<
     DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
@@ -28,45 +24,48 @@ interface Props
     HTMLDivElement
   >["className"];
   error?: string | null;
-  ref: ForwardedRef<HTMLInputElement>;
 }
 
-const CustomInput = forwardRef<HTMLInputElement, Props>(
-  ({ label = false, labelClass, containerClass, error, ...props }, ref) => {
-    return (
-      <div className={twMerge("input-field", containerClass)}>
-        <label
-          hidden={!label}
-          htmlFor={props.id ?? (props.name ? `${props.name}-input` : undefined)}
-          className={labelClass}
-        >
-          {label === true ? props.title : label}
-          {props.required && label && <span className="required">&nbsp;*</span>}
-        </label>
-        {props.type === "password" ? (
-          <Password {...props} ref={ref} />
-        ) : (
-          <input
-            id={props.name ? `${props.name}-input` : undefined}
-            {...props}
-            type={props.type as HTMLInputTypeAttribute}
-            ref={ref}
-            className={twMerge(error && "error", props.className)}
-          />
+export default function Input({
+  label,
+  labelClass,
+  containerClass,
+  error,
+  ...props
+}: Props) {
+  return (
+    <div className={twMerge("input-field", containerClass)}>
+      <label
+        hidden={!label}
+        htmlFor={props.id ?? (props.name ? `${props.name}-input` : undefined)}
+        className={labelClass}
+      >
+        {label === true ? props.title : label}
+        {props.required && label && <span className="required">&nbsp;*</span>}
+      </label>
+      {props.type === "password" ? (
+        <Password {...props} />
+      ) : (
+        <input
+          id={props.name ? `${props.name}-input` : undefined}
+          {...props}
+          type={props.type as HTMLInputTypeAttribute}
+          className={twMerge(error && "error", props.className)}
+        />
+      )}
+      <div
+        className={clsx(
+          "grid transition-[grid-template-rows] duration-300",
+          error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
-        <div
-          className={clsx(
-            "grid transition-[grid-template-rows] duration-300",
-            error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-          )}
-        >
-          <p className="error-message overflow-hidden text-sm">{error}</p>
-        </div>
+      >
+        <p className="input-error-message overflow-hidden text-sm">
+          {error ?? <>&nbsp;</>}
+        </p>
       </div>
-    );
-  },
-);
-export default CustomInput;
+    </div>
+  );
+}
 
 interface PasswordProps
   extends Omit<Props, "type" | "label" | "labelClass" | "containerClass"> {}
@@ -79,7 +78,7 @@ function Password(props: PasswordProps) {
   return (
     <div className="password-field">
       <input
-        id={props.name ?? `${props.name}-input`}
+        id={props.name ? `${props.name}-input` : undefined}
         {...props}
         type={show ? "text" : "password"}
         ref={props.ref}

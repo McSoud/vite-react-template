@@ -16,7 +16,7 @@
   --spacing-section-padding: 3rem;
   --spacing-section-margin: 5rem;
   --spacing-input-py: calc(var(--spacing) * 1.5);
-  --spacing-input-px: calc(var(--spacing) * 4);
+  --spacing-input-px: calc(var(--spacing) * 3);
 }
 /* 96rem 80rem 64rem 48rem 40rem  */
 @media screen and (min-width: 48rem) {
@@ -44,6 +44,9 @@
     }
   }
   /* Inputs */
+  .input-error-message {
+    color: var(--color-red-600);
+  }
   .input-field,
   .select-field {
     width: 100%;
@@ -53,42 +56,49 @@
         color: var(--color-red-600);
       }
     }
-    .error-message {
-      color: var(--color-red-600);
-    }
   }
   .input-field {
+    --input-border: 1px solid var(--color-gray-400);
+    --input-border-radius: var(--radius-md);
     input {
       padding-block: var(--spacing-input-py);
       padding-inline: var(--spacing-input-px);
       width: 100%;
-      border: 1px solid var(--color-gray-400);
-      border-radius: var(--radius-md);
+      border: var(--input-border);
+      border-radius: var(--input-border-radius);
       background-color: transparent;
       transition: border-color 0.2s;
       &:focus,
       &:hover {
-        border-color: var(--color-example-primary);
+        border-color: var(--color-primary);
       }
       &.error {
         border-color: var(--color-red-600);
       }
     }
+    .password-field {
+      display: flex;
+      align-items: center;
+      border: var(--input-border);
+      border-radius: var(--input-border-radius);
+      input {
+        border: none;
+        flex-grow: 1;
+      }
+      svg {
+        height: 100%;
+        margin-inline: var(--spacing-input-px);
+      }
+    }
   }
-  /* Radio */
+  /* Checkbox, Radio */
+  .checkbox-field,
   .radio-field {
+    display: flex;
+    gap: 0.25rem;
     label {
       cursor: pointer;
     }
-    .error-message {
-      color: var(--color-red-600);
-    }
-  }
-  /* Checkbox */
-  .checkbox-field {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
   }
   /* Hover */
   .hover-pop {

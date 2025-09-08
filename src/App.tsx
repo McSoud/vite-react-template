@@ -1,4 +1,3 @@
-import { Main } from "@mcsoud/react-ui";
 import "./App.css";
 import Footer from "./components/template/Footer";
 import Header from "./components/template/Header";
@@ -41,10 +40,10 @@ const login = createRoute({
   path: "/login",
   component: function () {
     return (
-      <Main id="login">
+      <main id="login-content">
         <h1 hidden>Login</h1>
         <p>Login page</p>
-      </Main>
+      </main>
     );
   },
 });

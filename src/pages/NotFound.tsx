@@ -1,10 +1,9 @@
-import { Main } from "@mcsoud/react-ui";
 import { Link } from "@tanstack/react-router";
 
 export default function PageNotFound() {
   return (
-    <Main
-      id="page-not-found"
+    <main
+      id="page-not-found-content"
       className="min-h-screen min-w-screen content-center bg-black text-white"
     >
       <section id="not-found-section" className="container text-center">
@@ -18,6 +17,6 @@ export default function PageNotFound() {
           &nbsp;to be redirected to the homepage.
         </p>
       </section>
-    </Main>
+    </main>
   );
 }

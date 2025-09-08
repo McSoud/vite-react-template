@@ -4,15 +4,18 @@ import {
   HTMLAttributes,
   InputHTMLAttributes,
   LabelHTMLAttributes,
+  ReactNode,
 } from "react";
-import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 interface Props {
   name: string;
   choices: Input[];
+  className?: DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >["className"];
   error?: string | null;
-  register?: ReturnType<typeof useForm>["register"];
 }
 interface Input
   extends Omit<
@@ -27,24 +30,30 @@ interface Input
     HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >["className"];
+  children?: ReactNode;
 }
 
-export default function CustomRadio({ name, choices, error, register }: Props) {
+export default function Radio({ name, className, choices, error }: Props) {
   return (
-    <div className="radio-field">
+    <div className={className}>
       {choices.map(
-        ({ containerClass, className, label, labelClass, ...choice }, i) => (
+        (
+          { containerClass, className, label, labelClass, children, ...choice },
+          i,
+        ) => (
           <div key={i} className={containerClass}>
-            <input
-              {...choice}
-              {...(register ? register(name) : {})}
-              type="radio"
-              name={name}
-              className={twMerge(error && "error", className)}
-            />
-            <label hidden={!label} htmlFor={choice.id} className={labelClass}>
-              {label === true ? choice.title : label}
-            </label>
+            <div className="radio-field">
+              <input
+                {...choice}
+                type="radio"
+                name={name}
+                className={twMerge(error && "error", className)}
+              />
+              <label hidden={!label} htmlFor={choice.id} className={labelClass}>
+                {label === true ? choice.title : label}
+              </label>
+            </div>
+            {children}
           </div>
         ),
       )}
@@ -54,7 +63,9 @@ export default function CustomRadio({ name, choices, error, register }: Props) {
           error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
-        <p className="error-message overflow-hidden text-sm">{error}</p>
+        <p className="input-error-message overflow-hidden text-sm">
+          {error ?? <>&nbsp;</>}
+        </p>
       </div>
     </div>
   );
