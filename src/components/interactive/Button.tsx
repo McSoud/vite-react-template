@@ -11,7 +11,7 @@ interface Props
   isLoading?: boolean;
 }
 
-export const ButtonPrimary = ({ isLoading, ...props }: Props) => {
+export const Button = ({ isLoading, ...props }: Props) => {
   return (
     <button
       type="button"
@@ -36,4 +36,4 @@ export const ButtonPrimary = ({ isLoading, ...props }: Props) => {
     </button>
   );
 };
-export default ButtonPrimary;
+export default Button;
