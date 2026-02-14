@@ -24,7 +24,7 @@ interface Input
   > {
   id: string;
   value: string;
-  label?: LabelHTMLAttributes<HTMLLabelElement>["children"] | true;
+  label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
   labelClass?: LabelHTMLAttributes<HTMLLabelElement>["className"];
   containerClass?: DetailedHTMLProps<
     HTMLAttributes<HTMLDivElement>,
@@ -50,7 +50,7 @@ export default function Radio({ name, className, choices, error }: Props) {
                 className={twMerge(error && "error", className)}
               />
               <label hidden={!label} htmlFor={choice.id} className={labelClass}>
-                {label === true ? choice.title : label}
+                {label !== true ? label : choice.title}
               </label>
             </div>
             {children}

@@ -14,10 +14,10 @@ interface Props
     DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
     "name" | "title" | "type"
   > {
+  type: Omit<HTMLInputTypeAttribute, "checkbox" | "hidden" | "radio">;
   name: string;
   title: string;
-  type: Omit<HTMLInputTypeAttribute, "checkbox" | "hidden" | "radio">;
-  label?: LabelHTMLAttributes<HTMLLabelElement>["children"] | true;
+  label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
   labelClass?: LabelHTMLAttributes<HTMLLabelElement>["className"];
   containerClass?: DetailedHTMLProps<
     HTMLAttributes<HTMLDivElement>,
@@ -38,10 +38,10 @@ export default function Input({
       <label
         hidden={!label}
         htmlFor={props.id ?? (props.name ? `${props.name}-input` : undefined)}
-        className={labelClass}
+        className={twMerge("label", labelClass)}
       >
-        {label === true ? props.title : label}
-        {props.required && label && <span className="required">&nbsp;*</span>}
+        {label !== true ? label : props.title}
+        {props.required && <span className="required">&nbsp;*</span>}
       </label>
       {props.type === "password" ? (
         <Password {...props} />

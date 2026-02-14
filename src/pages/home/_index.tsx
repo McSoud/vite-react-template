@@ -1,3 +1,4 @@
+import Checkbox from "@/components/inputs/Checkbox";
 import Input from "@/components/inputs/Input";
 import Select from "@/components/inputs/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,6 +37,21 @@ export default function PageHome() {
           title="Name"
           type="password"
           error={errors.name?.message}
+        />
+        <Checkbox
+          choices={[
+            {
+              name: "test",
+              value: "test",
+              label: "Test",
+              children: <p>Test</p>,
+            },
+            {
+              name: "test2",
+              value: "test2",
+              label: "Test2",
+            },
+          ]}
         />
         <Select
           name="select"

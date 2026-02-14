@@ -82,4 +82,17 @@
     padding-inline: var(--spacing-container-padding);
     margin-inline: auto;
   }
+  .hover-pop {
+    display: inline-block;
+    transition:
+      transform 0.2s,
+      color 0.2s,
+      background-color 0.2s;
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      @media screen and (prefers-reduced-motion: no-preference) {
+        transform: translate(0.125rem, -0.125rem);
+      }
+    }
+  }
 }

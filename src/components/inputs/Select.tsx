@@ -9,7 +9,6 @@ import Sel from "react-select";
 import clsx from "clsx";
 
 interface Props extends ComponentProps<typeof Sel> {
-  hidden?: boolean;
   name: string;
   label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
   labelClass?: DetailedHTMLProps<

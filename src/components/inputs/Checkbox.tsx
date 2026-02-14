@@ -23,7 +23,7 @@ interface Input
   > {
   name: string;
   value: string;
-  label?: LabelHTMLAttributes<HTMLLabelElement>["children"] | true;
+  label?: LabelHTMLAttributes<HTMLLabelElement>["children"];
   labelClass?: LabelHTMLAttributes<HTMLLabelElement>["className"];
   containerClass?: DetailedHTMLProps<
     HTMLAttributes<HTMLDivElement>,
