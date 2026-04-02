@@ -1,6 +1,6 @@
 import Checkbox from "@/components/inputs/Checkbox";
-import Input from "@/components/inputs/Input";
 import Select from "@/components/inputs/Select";
+import SelectFilter from "@/components/inputs/SelectFilter";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -13,7 +13,6 @@ type test = z.infer<typeof schema>;
 
 export default function PageHome() {
   const {
-    register,
     handleSubmit,
     setValue,
     getValues,
@@ -28,16 +27,17 @@ export default function PageHome() {
     <main id="home-content">
       <h1 hidden>Home</h1>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={(e) => {
+          void handleSubmit(onSubmit)(e);
+        }}
         className="my-section-margin container"
       >
-        <Input
-          {...register("name")}
-          name="name"
-          title="Name"
-          type="password"
-          error={errors.name?.message}
-        />
+        <Select name="select" title="Select">
+          <optgroup label="Group 1">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </optgroup>
+        </Select>
         <Checkbox
           choices={[
             {
@@ -53,7 +53,7 @@ export default function PageHome() {
             },
           ]}
         />
-        <Select
+        <SelectFilter
           name="select"
           value={getValues("select") ?? { id: 1, label: "1232" }}
           onChange={(e) =>

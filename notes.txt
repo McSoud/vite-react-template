@@ -1,3 +1,0 @@
-Check the select component with the react-hook-form.
-
-Use code splitting for less bundle size.

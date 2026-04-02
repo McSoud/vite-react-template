@@ -64,11 +64,13 @@
     }
   }
   .input-field,
-  .textarea-field {
+  .textarea-field,
+  .select-field {
     --input-border-radius: var(--radius-xl);
     --input-border: 1px solid var(--color-gray-400);
     input,
-    textarea {
+    textarea,
+    select {
       padding-block: var(--spacing-input-py);
       padding-inline: var(--spacing-input-px);
       width: 100%;
@@ -83,6 +85,13 @@
       &.error {
         outline: 0.125rem solid var(--color-red-600);
       }
+    }
+    select {
+      appearance: none;
+      background-image: url("/select-arrow.svg");
+      background-position: right var(--spacing-input-px) center;
+      background-repeat: no-repeat;
+      background-size: 1.5rem;
     }
     .password-field {
       display: flex;
@@ -106,6 +115,18 @@
     gap: 0.25rem;
     label {
       cursor: pointer;
+    }
+  }
+  /* Accordion */
+  .accordion {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+    &.open {
+      grid-template-rows: 1fr;
+    }
+    > * {
+      overflow: hidden;
     }
   }
 }

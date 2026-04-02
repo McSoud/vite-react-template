@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 export function scrollToId(id: string) {
   const section = document.getElementById(id);
-  section && section.scrollIntoView();
+  if (section) section.scrollIntoView();
 }
 
 export function toastErrorMessage(error: AxiosError<LaravelError>) {

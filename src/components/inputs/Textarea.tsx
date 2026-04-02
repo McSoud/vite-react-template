@@ -47,12 +47,7 @@ export default function Textarea({
         {...props}
         className={twMerge(error && "error", props.className)}
       />
-      <div
-        className={clsx(
-          "grid transition-[grid-template-rows] duration-300",
-          error ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-        )}
-      >
+      <div className={clsx("accordion", error && "open")}>
         <p className="input-error-message overflow-hidden text-sm">
           {error ?? <>&nbsp;</>}
         </p>

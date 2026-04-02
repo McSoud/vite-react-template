@@ -1,4 +1,6 @@
-import axios from "axios";
+import { LaravelError } from "@mcsoud/types";
+import axios, { AxiosError } from "axios";
+import { toast } from "sonner";
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL + "/api";
 // axios.defaults.headers.common["Content-Type"] = `application/json`;
@@ -11,7 +13,18 @@ axios.interceptors.request.use(
     return config;
   },
   function (error) {
-    return Promise.reject(error);
+    throw error instanceof Error ? error : new Error(String(error));
   },
 );
-
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    toast.error(
+      (error as AxiosError<LaravelError>).response?.data?.message ||
+        "Something went wrong.",
+    );
+    throw error instanceof Error ? error : new Error(String(error));
+  },
+);

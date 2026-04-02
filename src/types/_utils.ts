@@ -5,4 +5,5 @@ export type SelectOption = {
   label: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TODO = any;

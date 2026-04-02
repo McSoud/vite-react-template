@@ -12,10 +12,10 @@ export function useUser(login = false) {
   const queryClient = useQueryClient();
   const query = useQuery({
     queryKey: QUERY_KEYS.user,
-    queryFn: async () => {
+    queryFn: async function () {
       if (!token) {
         if (login)
-          navigate({
+          await navigate({
             to: "/login",
           });
         return null;
@@ -24,15 +24,15 @@ export function useUser(login = false) {
         const res = await axios.get<LaravelResponse<LaravelObject>>("/me");
         if (res.data?.success) {
           toast.success("Welcome back!");
-          return res.data;
+          return res.data.data;
         }
         return null;
-      } catch (err) {
+      } catch {
         if (pathname !== "verify-email") {
           toast.error("Token invalid.");
           localStorage.removeItem("token");
-          queryClient.setQueryData(QUERY_KEYS.user, null);
-          if (login) navigate({ to: "/login" });
+          queryClient.removeQueries({ queryKey: QUERY_KEYS.user });
+          if (login) await navigate({ to: "/login" });
         }
         return null;
       }
